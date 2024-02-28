@@ -1,7 +1,9 @@
-name: CICD for Serverless Application
+name: CICD for Serverless Application + Retrieve AWS Secrets information
 run-name: ${{ github.actor }} is doing CICD for Serverless Application
 
 on:
+  workflow_dispatch:
+  
   push:
     branches:  [ main, "*"]
 
@@ -36,10 +38,26 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - name: serverless deploy
+    
+    - name: deploy serverless
       uses: serverless/github-action@v3.2
       with:
         args: deploy
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    
+    - name: retrieve secrets
+      uses: aws-actions/aws-secretsmanager-get-secrets@v1
+      with:
+        secret-ids: |
+          rudyn-secret-test
+        parse-json-secrets: true
+    
+    - name: remove serverless
+      uses: serverless/github-action@v3.2
+      with:
+        args: remove
+      env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

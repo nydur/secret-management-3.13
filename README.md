@@ -1,4 +1,4 @@
-# 3.13 Repository with a new serverless application code
+# 3.13 Retrieve information on AWS Secret Management as part of the pipeline
 
 Sample repository for assignment.
 
@@ -8,6 +8,6 @@ Sample repository for assignment.
 
 ### To retrieve information using Secret Management on AWS, then get the information as part of the pipeline.
 
-Pipeline steps is listed within `main.yml`
+Pipeline step to retrieve information listed within `main.yml`
 
-- ...
+- Final step in the pipeline deployment as `retrieve secrets` to
