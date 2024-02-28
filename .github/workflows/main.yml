@@ -3,23 +3,19 @@ run-name: ${{ github.actor }} is doing workflow testrun
 
 on:
   push:
-    branches:  [ main, "*"]
+    branches:  [ main ]
+
+env:
+  NAME: 'Workflow Testrun'
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 jobs:
-  pre-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event"
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-
   secrets:
     runs-on: ubuntu-latest
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
       - name: retrieve secrets
+        run: echo "Running $NAME"
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
           secret-ids: |
