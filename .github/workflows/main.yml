@@ -1,9 +1,7 @@
-name: CICD for Serverless Application + Retrieve AWS Secrets information
-run-name: ${{ github.actor }} is doing CICD for Serverless Application
+name: Retrieve AWS Secrets information
+run-name: ${{ github.actor }} is doing workflow testrun
 
 on:
-  workflow_dispatch:
-  
   push:
     branches:  [ main, "*"]
 
@@ -15,49 +13,15 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
 
-  install-dependencies:
+  secrets:
     runs-on: ubuntu-latest
-    needs: pre-deploy
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - name: Run Installation of Dependencies Commands
-        run: npm install
-
-  deploy:
-    name: deploy
-    runs-on: ubuntu-latest
-    needs: install-dependencies
-    strategy:
-      matrix:
-        node-version: [18.x]
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    
-    - name: deploy serverless
-      uses: serverless/github-action@v3.2
-      with:
-        args: deploy
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    
-    - name: retrieve secrets
-      uses: aws-actions/aws-secretsmanager-get-secrets@v1
-      with:
-        secret-ids: |
-          rudyn-secret-test
-        parse-json-secrets: true
-    
-    - name: remove serverless
-      uses: serverless/github-action@v3.2
-      with:
-        args: remove
-      env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: retrieve secrets
+        uses: aws-actions/aws-secretsmanager-get-secrets@v1
+        with:
+          secret-ids: |
+            rudyn-secret-test
+          parse-json-secrets: true
