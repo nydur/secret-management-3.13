@@ -1,6 +1,6 @@
 # 3.13 Retrieve information on AWS Secret Management in the pipeline
 
-Sample repository for assignment, a continuation of [3.12](https://github.com/nydur/serverless-cicd-feb22) (with extended pipeline deployment)
+Sample repository for assignment, a continuation of [3.12](https://github.com/nydur/serverless-cicd-feb22) (with full extended pipeline to deploy serverless)
 
 ---
 
@@ -10,4 +10,4 @@ Sample repository for assignment, a continuation of [3.12](https://github.com/ny
 
 Pipeline step to retrieve information listed within `main.yml`
 
-- Run job in the pipeline deployment as `retrieve secrets` to
+- Run job in the pipeline deployment as `get-secrets`
