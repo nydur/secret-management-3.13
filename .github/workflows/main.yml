@@ -15,8 +15,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: retrieve secrets
-        uses: aws-actions/aws-secretsmanager-get-secrets@v1
-        with:
-          secret-ids: |
-            rudyn-secret-test
-            arn:aws:secretsmanager:ap-southeast-1:255945442255:secret:rudyn-secret-test-ny8Gia
+        run: "aws-secretsmanager get-secrets-value --secret-id rudyn-secret-test"
