@@ -15,4 +15,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: retrieve secrets
-        run: "aws-secretsmanager get-secrets-value --secret-id rudyn-secret-test"
+        run: "aws-secretsmanager get-secrets-value -secret-id rudyn-secret-test"
