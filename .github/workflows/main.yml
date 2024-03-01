@@ -30,6 +30,7 @@ jobs:
         # run: aws secretsmanager get-secret-value --secret-id rudyn-secret-test
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
+          aws-region: ap-southeast-1
           secret-ids: |
             rudyn-secret-test
           parse-json-secrets: true
