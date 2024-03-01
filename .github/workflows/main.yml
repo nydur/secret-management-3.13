@@ -19,4 +19,4 @@ jobs:
         with:
           secret-ids: |
             rudyn-secret-test
-          parse-json-secrets: true
+          # parse-json-secrets: true
