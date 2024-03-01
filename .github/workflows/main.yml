@@ -1,5 +1,5 @@
 name: Retrieve AWS Secrets information
-run-name: ${{ github.actor }} is doing workflow testrun
+run-name: ${{ github.actor }} is running workflow testrun
 
 on:
   push:
