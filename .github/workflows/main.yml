@@ -18,5 +18,5 @@ jobs:
         uses: aws-actions/aws-secretsmanager-get-secrets@v1
         with:
           secret-ids: |
-            ENV_VAR, rudyn-secret-test
-          # parse-json-secrets: true
+            rudyn-secret-test
+            arn:aws:secretsmanager:ap-southeast-1:255945442255:secret:rudyn-secret-test-ny8Gia
