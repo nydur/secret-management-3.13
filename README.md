@@ -17,7 +17,7 @@ on:
   workflow_dispatch
 ```
 
-- Run job in the pipeline deployment as `get secrets` (Step 3 in the under the `deploy` job)
+- Run job in the pipeline deployment as `get secrets` (Step 3 under the `deploy` job sequence)
 
 ```
 - name: get secrets
