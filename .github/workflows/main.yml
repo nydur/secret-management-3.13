@@ -1,9 +1,8 @@
-name: Retrieve AWS Secrets information
+name: Retrieve AWS Secrets information 1
 run-name: ${{ github.actor }} is running workflow testrun
 
 on:
-  push:
-    branches:  [ main, "*" ]
+  workflow_dispatch
 
 jobs:
   pre-deploy:
