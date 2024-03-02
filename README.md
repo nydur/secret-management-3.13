@@ -20,8 +20,13 @@ on:
 ```
 - name: get secrets
         run: |
-          aws secretsmanager get-secret-value --secret-id rudyn-secret-test
+          aws secretsmanager get-secret-value --secret-id <Secret name>
 
 ```
 
-- Retrieve results once the job is completed under `get secrets`, which will be listed after `SecretString`
+- Retrieve results once the job is completed under `get secrets`, which will be listed as the `Secret key` & `Secret value` that was initially set up.
+
+```
+"SecretString": "{\"<Secret key>\":\"<Secret value>\"}",
+
+```
