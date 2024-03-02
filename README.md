@@ -8,7 +8,9 @@ Sample repository for assignment, a continuation of [3.12](https://github.com/ny
 
 ### To retrieve information using Secret Management on AWS, then get the information from the completed the pipeline job
 
-- Pipeline step to retrieve information listed within `secrets.yml`, and the workflow is set to run manually
+- Steps to retrieve information listed within `secrets.yml`
+- Confirm that `AWS_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY` have been added to the repository secrets
+- Workflow is set to run manually
 
 ```
 on:
